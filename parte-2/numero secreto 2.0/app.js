@@ -5,14 +5,33 @@
 // adiciona um texto ao "h1" no HTML
 
 // para adicionar um texto sempre dentro de '' já se for um numeral, não precisa de ''.
-let titulo = document.querySelector('h1');
-titulo.innerHTML = 'Jogo do número secreto!';
 
-let paragrafo = document.querySelector('.texto__paragrafo');
-paragrafo.innerHTML = 'Escolha um número entre 1 a 10!'
+let numeroSecreto = gerarNumeroAleatorio();
+console.log (numeroSecreto);
 
 // Trabalhando com funções
 
+function mostrarTextoNaTela (tag, texto) {
+    let campo = document.querySelector(tag);
+    campo.innerHTML = texto;
+}
+
+mostrarTextoNaTela('h1', 'Jogo do Número secreto!');
+mostrarTextoNaTela('p', 'Escolha um número entre 1 e 10!');
+
 function verificarChute() {
-    alert('Voce chutou!')
+    let numeroChute = document.querySelector('input').value
+    if (numeroChute == numeroSecreto){
+        alert ('parabens, você acertou!');
+     } else {
+        if (numeroChute > numeroSecreto) {
+            alert(`O número secreto é menor que ${numeroChute}`);
+        } else {
+            alert(`O número secreto é maior que ${numeroChute}`);
+        }
+     }
+}
+
+function gerarNumeroAleatorio () {
+    return parseInt(Math.random() * 10 + 1);
 }
