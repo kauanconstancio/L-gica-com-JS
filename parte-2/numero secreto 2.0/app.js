@@ -8,6 +8,7 @@
 
 let numeroSecreto = gerarNumeroAleatorio();
 console.log (numeroSecreto);
+let tentativas = 1;
 
 // Trabalhando com funções
 
@@ -22,12 +23,18 @@ mostrarTextoNaTela('p', 'Escolha um número entre 1 e 10!');
 function verificarChute() {
     let numeroChute = document.querySelector('input').value
     if (numeroChute == numeroSecreto){
-        alert ('parabens, você acertou!');
+        let palavraTentativa = tentativas > 1 ? 'tentativas' : 'tentativa';
+        let mensagemTentativa = `Você acertou o número secreto com ${tentativas} ${palavraTentativa}!`
+        mostrarTextoNaTela('h1', 'Parabéns!');
+        mostrarTextoNaTela('p', mensagemTentativa);
      } else {
         if (numeroChute > numeroSecreto) {
-            alert(`O número secreto é menor que ${numeroChute}`);
+            mostrarTextoNaTela('h1', 'Tente novamente!');
+            mostrarTextoNaTela('p', `O número secreto é menor que ${numeroChute}`);
         } else {
-            alert(`O número secreto é maior que ${numeroChute}`);
+            mostrarTextoNaTela('h1', 'Tente novamente!');
+            mostrarTextoNaTela('p', `O número secreto é maior que ${numeroChute}`);
+            tentativas++
         }
      }
 }
